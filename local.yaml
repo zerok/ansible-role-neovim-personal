@@ -1,0 +1,9 @@
+---
+- name: Install neovim
+  hosts: localhost
+
+  tasks:
+    - set_fact:
+        role_path: "{{ playbook_dir }}/../"
+    - include_role: 
+        name: ansible-role-neovim-personal
