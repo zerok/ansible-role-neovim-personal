@@ -1,0 +1,8 @@
+- name: Install neovim
+  become: yes
+  apt:
+    name: neovim
+- name: Install neovim python3 binding
+  become: yes
+  apt:
+    name: python3-neovim

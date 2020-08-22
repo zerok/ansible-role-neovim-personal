@@ -1,0 +1,19 @@
+---
+- name: Install neovim (Debian)
+  include_tasks: install_debian.yaml
+  when: ansible_facts['os_family'] == "Debian"
+- name: Install neovim (macOS)
+  include_tasks: install_macos.yaml
+  when: ansible_facts['os_family'] == "Darwin"
+- name: Create configuration folder
+  file:
+    name: "{{ ansible_facts['user_dir'] }}/.config"
+    state: directory
+- name: Create neovim configuration folder
+  file:
+    name: "{{ ansible_facts['user_dir'] }}/.config/nvim"
+    state: directory
+- name: init.vim
+  copy:
+    src: "{{ role_path }}/files/init.vim"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/nvim/init.vim"
